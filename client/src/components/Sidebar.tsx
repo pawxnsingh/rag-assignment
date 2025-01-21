@@ -25,7 +25,7 @@ export function Sidebar({
           {documents.map((doc, index) => (
             <li key={index}>
               <Button
-                variant={doc === selectedDocument ? "secondary" : "ghost"}
+                variant={doc === selectedDocument ? "default" : "ghost"}
                 className="w-full justify-start"
                 onClick={() => {
                   onSelectDocument(doc);

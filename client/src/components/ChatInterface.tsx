@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -16,6 +16,16 @@ interface ChatInterfaceProps {
 export function ChatInterface({ selectedDocument }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
+  const chatEndRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+  useEffect(() => {
+    scrollToBottom()    
+  }, [messages])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -64,6 +74,7 @@ export function ChatInterface({ selectedDocument }: ChatInterfaceProps) {
             </div>
           </div>
         ))}
+        <div ref={chatEndRef}></div>
       </ScrollArea>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <Input

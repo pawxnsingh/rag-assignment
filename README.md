@@ -14,5 +14,3 @@ STEP 3:
 - here you go frontend/backend/database running on their specified port
 - just access the frontend as specified in the terminal
 - http://localhost:5173
-
-
